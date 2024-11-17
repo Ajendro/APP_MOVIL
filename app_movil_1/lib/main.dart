@@ -1,5 +1,5 @@
-import 'package:app_movil_1/second.dart';
 import 'package:flutter/material.dart';
+import 'home_page.dart'; // Importa la primera pantalla
 
 void main() {
   runApp(MyApp());
@@ -9,50 +9,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'App',
+      title: 'Flutter Widgets Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/', // Ruta inicial
       routes: {
-        '/':(context)=> FirstPage(),
-        '/second':(context)=> Second(),
-      }
+        '/': (context) => HomePage(), 
+        '/second': (context) => SecondPage(), 
+      },
     );
   }
 }
 
-// Pantalla principal
-class FirstPage extends StatelessWidget {
+// Segunda pantalla
+class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenidos a la UIDE',textAlign: TextAlign.center)
+        backgroundColor: Color(0xFF910049),
+        title: Text('Pantalla 2'),
       ),
-
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Text(
-              'Conoce Acerca de Nuestra Universidad',
-              style: TextStyle(fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            Image.network(
-              'https://pbs.twimg.com/media/FZXoPMuXkAIejus.jpg', 
-              height: 150,
-              width: 150,
+              'Bienvenido a la Pantalla 2',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/second');
+                Navigator.pop(context); // Regresa a la pantalla anterior
               },
-              child: Text('Conoce Más'), 
+              child: Text('Regresar a la Pantalla 1'),
             ),
           ],
         ),
@@ -60,5 +52,3 @@ class FirstPage extends StatelessWidget {
     );
   }
 }
-
-
